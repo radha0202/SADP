@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h2>Welcome, <span th:text="${username}"></span>!</h2>
+<div class="success" th:text="${success}"></div>
+<p><a href="/login">Logout</a></p>
+</body>
+</html>

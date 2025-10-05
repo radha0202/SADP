@@ -1,0 +1,19 @@
+spring.application.name=assi3
+server.port=8080
+
+# H2 DB (in-memory)
+spring.datasource.url=jdbc:h2:mem:assi3db
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# H2 console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# ensure JPA creates schema before any script (not required here but safe)
+spring.jpa.defer-datasource-initialization=true
