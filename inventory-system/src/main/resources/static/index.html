@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory System</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #f2f2f2; }
+    input, button { margin: 5px; padding: 6px; }
+  </style>
+</head>
+<body>
+  <h1>📦 Inventory System</h1>
+
+  <form id="inventoryForm">
+    <input type="hidden" id="itemId">
+    <input type="text" id="itemName" placeholder="Item Name" required>
+    <input type="number" id="quantity" placeholder="Quantity" required>
+    <input type="number" step="0.01" id="price" placeholder="Price" required>
+    <button type="submit">Add / Update Item</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="inventoryTable"></tbody>
+  </table>
+
+  <script>
+    const apiUrl = "http://localhost:8080/api/inventory";
+
+    async function fetchItems() {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      const table = document.getElementById("inventoryTable");
+      table.innerHTML = "";
+      data.forEach(item => {
+        const row = `
+          <tr>
+            <td>${item.id}</td>
+            <td>${item.itemName}</td>
+            <td>${item.quantity}</td>
+            <td>${item.price}</td>
+            <td>
+              <button onclick="editItem(${item.id}, '${item.itemName}', ${item.quantity}, ${item.price})">✏️ Edit</button>
+              <button onclick="deleteItem(${item.id})">🗑️ Delete</button>
+            </td>
+          </tr>`;
+        table.innerHTML += row;
+      });
+    }
+
+    async function addOrUpdateItem(e) {
+      e.preventDefault();
+      const id = document.getElementById("itemId").value;
+      const item = {
+        itemName: document.getElementById("itemName").value,
+        quantity: parseInt(document.getElementById("quantity").value),
+        price: parseFloat(document.getElementById("price").value)
+      };
+
+      if (id) {
+        await fetch(`${apiUrl}/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        });
+      } else {
+        await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        });
+      }
+
+      document.getElementById("inventoryForm").reset();
+      document.getElementById("itemId").value = "";
+      fetchItems();
+    }
+
+    function editItem(id, name, qty, price) {
+      document.getElementById("itemId").value = id;
+      document.getElementById("itemName").value = name;
+      document.getElementById("quantity").value = qty;
+      document.getElementById("price").value = price;
+    }
+
+    async function deleteItem(id) {
+      await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+      fetchItems();
+    }
+
+    document.getElementById("inventoryForm").addEventListener("submit", addOrUpdateItem);
+    fetchItems();
+  </script>
+</body>
+</html>
