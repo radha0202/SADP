@@ -1,0 +1,16 @@
+mvn clean install
+java -jar //path
+http://localhost:8080/h2-console
+http://localhost:8080/api/tasks
+
+post 
+
+{
+  "title": "Finish Project",
+  "description": "Complete Spring Boot API",
+  "category": "Work",
+  "dueDate": "2025-09-30",
+  "completed": false
+}
+
+

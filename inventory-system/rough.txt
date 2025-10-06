@@ -1,0 +1,15 @@
+mvn clean install
+java -jar //path
+
+http://localhost:8080/h2-console
+
+	
+inventory:
+http://localhost:8080/api/inventory
+post 
+{
+  "itemName": "Keypad in black colour",
+  "quantity": 100,
+  "price": 5000.0
+}
+
