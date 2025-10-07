@@ -1,57 +1,29 @@
-// Abstract Products
 
-/**
- * Abstract class representing a generic Car.
- * Concrete car types (Sedan, SUV) will extend this class.
- */
 abstract class Car {
-    protected String region; // To indicate the region for which the car is built
+    protected String region; 
 
     public Car(String region) {
         this.region = region;
     }
 
-    /**
-     * Abstract method to define how a car is assembled.
-     * To be implemented by concrete car types.
-     */
+    
     public abstract void assemble();
 
-    /**
-     * Abstract method to display information about the car.
-     * To be implemented by concrete car types.
-     */
     public abstract void displayInfo();
 }
 
-/**
- * Abstract class representing a generic Engine specification.
- * Concrete engine types will implement this interface.
- */
+
 interface Engine {
-    /**
-     * Describes the characteristics of the engine.
-     */
+    
     void describe();
 }
 
-/**
- * Abstract class representing generic Safety Features specification.
- * Concrete safety feature sets will implement this interface.
- */
+
 interface SafetyFeatures {
-    /**
-     * Describes the safety features included.
-     */
+    
     void describe();
 }
 
-
-// Concrete Products for North America
-
-/**
- * Concrete implementation of Car for a North American Sedan.
- */
 class NASedan extends Car {
     public NASedan() {
         super("North America");
@@ -68,9 +40,7 @@ class NASedan extends Car {
     }
 }
 
-/**
- * Concrete implementation of Car for a North American SUV.
- */
+
 class NASUV extends Car {
     public NASUV() {
         super("North America");
@@ -87,9 +57,7 @@ class NASUV extends Car {
     }
 }
 
-/**
- * Concrete implementation of Engine for North American specifications.
- */
+
 class NAEngine implements Engine {
     @Override
     public void describe() {
@@ -97,9 +65,7 @@ class NAEngine implements Engine {
     }
 }
 
-/**
- * Concrete implementation of SafetyFeatures for North American specifications.
- */
+
 class NASafetyFeatures implements SafetyFeatures {
     @Override
     public void describe() {
@@ -108,11 +74,7 @@ class NASafetyFeatures implements SafetyFeatures {
 }
 
 
-// Concrete Products for Europe
 
-/**
- * Concrete implementation of Car for a European Sedan.
- */
 class EUSedan extends Car {
     public EUSedan() {
         super("Europe");
@@ -129,9 +91,7 @@ class EUSedan extends Car {
     }
 }
 
-/**
- * Concrete implementation of Car for a European SUV.
- */
+
 class EUSUV extends Car {
     public EUSUV() {
         super("Europe");
@@ -148,9 +108,7 @@ class EUSUV extends Car {
     }
 }
 
-/**
- * Concrete implementation of Engine for European specifications.
- */
+
 class EUEngine implements Engine {
     @Override
     public void describe() {
@@ -158,9 +116,7 @@ class EUEngine implements Engine {
     }
 }
 
-/**
- * Concrete implementation of SafetyFeatures for European specifications.
- */
+
 class EUSafetyFeatures implements SafetyFeatures {
     @Override
     public void describe() {
@@ -169,13 +125,9 @@ class EUSafetyFeatures implements SafetyFeatures {
 }
 
 
-// Abstract Factory
 
-/**
- * Abstract Factory interface for creating a family of related car products
- * (Car, Engine, SafetyFeatures).
- * Concrete factories will implement this interface for specific regions.
- */
+
+
 interface CarManufacturingFactory {
     Car createSedan();
     Car createSUV();
@@ -184,12 +136,7 @@ interface CarManufacturingFactory {
 }
 
 
-// Concrete Factories
 
-/**
- * Concrete Factory for manufacturing cars and specifications for North America.
- * Implements the CarManufacturingFactory to produce NA-specific products.
- */
 class NorthAmericaCarFactory implements CarManufacturingFactory {
     @Override
     public Car createSedan() {
@@ -212,10 +159,7 @@ class NorthAmericaCarFactory implements CarManufacturingFactory {
     }
 }
 
-/**
- * Concrete Factory for manufacturing cars and specifications for Europe.
- * Implements the CarManufacturingFactory to produce EU-specific products.
- */
+
 class EuropeCarFactory implements CarManufacturingFactory {
     @Override
     public Car createSedan() {
@@ -239,28 +183,16 @@ class EuropeCarFactory implements CarManufacturingFactory {
 }
 
 
-// Client Code
 
-/**
- * The client class (CarDealership) that uses the Abstract Factory.
- * It works with abstract types (Car, Engine, SafetyFeatures, CarManufacturingFactory)
- * and is unaware of the concrete implementations.
- */
 class CarDealership {
     private CarManufacturingFactory factory;
 
-    /**
-     * Constructor that takes a CarManufacturingFactory.
-     * This allows the dealership to be configured for a specific region's manufacturing.
-     * @param factory The concrete factory to use for creating cars and specifications.
-     */
+    
     public CarDealership(CarManufacturingFactory factory) {
         this.factory = factory;
     }
 
-    /**
-     * Orders a Sedan and its associated specifications from the configured factory.
-     */
+    
     public void orderSedan() {
         System.out.println("\n--- Ordering a Sedan ---");
         Car sedan = factory.createSedan();
@@ -274,9 +206,7 @@ class CarDealership {
         System.out.println("Sedan order complete.");
     }
 
-    /**
-     * Orders an SUV and its associated specifications from the configured factory.
-     */
+    
     public void orderSUV() {
         System.out.println("\n--- Ordering an SUV ---");
         Car suv = factory.createSUV();
@@ -291,28 +221,27 @@ class CarDealership {
     }
 }
 
-// Main class to run the demonstration
+
 public class CarMain {
     public static void main(String[] args) {
         System.out.println("Setting up North American Dealership...");
-        // Create a North American factory
+    
         CarManufacturingFactory naFactory = new NorthAmericaCarFactory();
-        // Create a dealership configured for North America
+        
         CarDealership naDealership = new CarDealership(naFactory);
 
-        // Order cars from the North American dealership
+        
         naDealership.orderSedan();
         naDealership.orderSUV();
 
         System.out.println("\n----------------------------------------");
 
         System.out.println("\nSetting up European Dealership...");
-        // Create a European factory
+        
         CarManufacturingFactory euFactory = new EuropeCarFactory();
-        // Create a dealership configured for Europe
         CarDealership euDealership = new CarDealership(euFactory);
 
-        // Order cars from the European dealership
+        
         euDealership.orderSedan();
         euDealership.orderSUV();
     }

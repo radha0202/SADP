@@ -1,4 +1,3 @@
-// Product Interfaces
 interface Camera {
     void takePhoto();
 }
@@ -7,7 +6,6 @@ interface VideoRecorder {
     void recordVideo();
 }
 
-// Concrete Products for Samsung
 class SamsungCamera implements Camera {
     public void takePhoto() {
         System.out.println("Samsung: Photo taken with 108MP camera.");
@@ -20,7 +18,6 @@ class SamsungVideoRecorder implements VideoRecorder {
     }
 }
 
-// Concrete Products for iPhone
 class IPhoneCamera implements Camera {
     public void takePhoto() {
         System.out.println("iPhone: Photo taken with advanced AI optimization.");
@@ -33,13 +30,11 @@ class IPhoneVideoRecorder implements VideoRecorder {
     }
 }
 
-// Abstract Factory Interface
 interface MobileFactory {
     Camera createCamera();
     VideoRecorder createVideoRecorder();
 }
 
-// Concrete Factory for Samsung
 class SamsungFactory implements MobileFactory {
     public Camera createCamera() {
         return new SamsungCamera();
@@ -49,7 +44,6 @@ class SamsungFactory implements MobileFactory {
     }
 }
 
-// Concrete Factory for iPhone
 class IPhoneFactory implements MobileFactory {
     public Camera createCamera() {
         return new IPhoneCamera();
@@ -59,10 +53,8 @@ class IPhoneFactory implements MobileFactory {
     }
 }
 
-// Client Code
 public class MobileFactoryDemo {
     public static void main(String[] args) {
-        // Change the factory here to test different brands
         MobileFactory factory;
 
         System.out.println("Using Samsung Phone:");

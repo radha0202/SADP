@@ -1,12 +1,11 @@
 import java.util.Scanner;
 
-// Command interface
+
 interface Command {
     void execute();
     void undo();
 }
 
-// Receiver: Ceiling Fan
 class CeilingFan {
     private String location;
     private int speed;
@@ -46,7 +45,7 @@ class CeilingFan {
     }
 }
 
-// Generic command for fan speeds
+
 class CeilingFanCommand implements Command {
     private CeilingFan ceilingFan;
     private int prevSpeed;
@@ -73,7 +72,7 @@ class CeilingFanCommand implements Command {
     }
 }
 
-// Invoker
+
 class RemoteControl {
     private Command lastCommand;
 
@@ -92,7 +91,7 @@ class RemoteControl {
     }
 }
 
-// Main class
+
 public class CeilingFanTest {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

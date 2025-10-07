@@ -1,10 +1,10 @@
-// Command Interface
+
 interface Command {
     void execute();
     void undo();
 }
 
-// Receiver - Light
+
 class Light {
     public void on() {
         System.out.println("Light is ON");
@@ -14,7 +14,7 @@ class Light {
     }
 }
 
-// Concrete Command - LightOnCommand
+
 class LightOnCommand implements Command {
     private Light light;
     public LightOnCommand(Light light) {
@@ -28,7 +28,6 @@ class LightOnCommand implements Command {
     }
 }
 
-// Concrete Command - LightOffCommand
 class LightOffCommand implements Command {
     private Light light;
     public LightOffCommand(Light light) {
@@ -42,7 +41,7 @@ class LightOffCommand implements Command {
     }
 }
 
-// Invoker - RemoteControl
+
 class RemoteControl {
     private Command command;
     public void setCommand(Command command) {
@@ -56,28 +55,27 @@ class RemoteControl {
     }
 }
 
-// Client - Test
 public class CommandPatternTest {
     public static void main(String[] args) {
-        // Receiver
+        
         Light livingRoomLight = new Light();
 
-        // Commands
+        
         Command lightOn = new LightOnCommand(livingRoomLight);
         Command lightOff = new LightOffCommand(livingRoomLight);
 
-        // Invoker
+        
         RemoteControl remote = new RemoteControl();
 
-        // Turn ON Light
+        
         remote.setCommand(lightOn);
-        remote.pressButton();   // Light is ON
-        remote.pressUndo();     // Light is OFF
+        remote.pressButton();   
+        remote.pressUndo();    
 
-        // Turn OFF Light
+        
         remote.setCommand(lightOff);
-        remote.pressButton();   // Light is OFF
-        remote.pressUndo();     // Light is ON
+        remote.pressButton();   
+        remote.pressUndo();     
     }
 }
 

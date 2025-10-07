@@ -1,9 +1,9 @@
-// Workshop interface (Implementor)
+
 interface Workshop {
     void producePart(String partName);
 }
 
-// Concrete Workshop implementations
+
 class ProduceEngine implements Workshop {
     public void producePart(String partName) {
         System.out.println("Producing " + partName);
@@ -16,7 +16,6 @@ class ProduceChassis implements Workshop {
     }
 }
 
-// Abstraction
 abstract class Vehicle {
     protected Workshop workshop1;
     protected Workshop workshop2;
@@ -29,7 +28,6 @@ abstract class Vehicle {
     public abstract void manufacture();
 }
 
-// Refined Abstractions
 class Car extends Vehicle {
     public Car(Workshop workshop1, Workshop workshop2) {
         super(workshop1, workshop2);
@@ -56,18 +54,16 @@ class Bike extends Vehicle {
     }
 }
 
-// Demo class
 public class BridgePattern {
     public static void main(String[] args) {
-        // Workshops
+    
         Workshop engineWorkshop = new ProduceEngine();
         Workshop chassisWorkshop = new ProduceChassis();
 
-        // Create Car and Bike with different workshops
+
         Vehicle car = new Car(engineWorkshop, chassisWorkshop);
         Vehicle bike = new Bike(engineWorkshop, chassisWorkshop);
 
-        // Manufacture vehicles
         car.manufacture();
         bike.manufacture();
     }

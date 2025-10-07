@@ -1,4 +1,4 @@
-// Target interface (what client expects)
+
 interface BeatModel {
     void initialize();
     void on();
@@ -6,7 +6,6 @@ interface BeatModel {
     int getBeatPerMinute();
 }
 
-// Adaptee class (existing class with different interface)
 class HeartModel {
     public void startHeart() {
         System.out.println("Heart started beating...");
@@ -17,12 +16,11 @@ class HeartModel {
     }
 
     public int getHeartRate() {
-        // Just simulating heart rate with random value
-        return 60 + (int)(Math.random() * 40); // 60 - 100 bpm
+
+        return 60 + (int)(Math.random() * 40); 
     }
 }
 
-// Adapter class (makes HeartModel compatible with BeatModel)
 class HeartAdapter implements BeatModel {
     private HeartModel heartModel;
 
@@ -51,13 +49,10 @@ class HeartAdapter implements BeatModel {
     }
 }
 
-// Client code
 public class AdapterPatternDemo {
     public static void main(String[] args) {
-        // Existing heart model
         HeartModel heart = new HeartModel();
 
-        // Use adapter to treat HeartModel like BeatModel
         BeatModel beatModel = new HeartAdapter(heart);
 
         beatModel.initialize();

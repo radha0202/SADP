@@ -1,6 +1,6 @@
 import java.io.*;
 
-// Decorator class that converts uppercase to lowercase
+
 class LowerCaseReader extends FilterReader {
 
     protected LowerCaseReader(Reader in) {

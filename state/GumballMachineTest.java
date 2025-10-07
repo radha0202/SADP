@@ -1,4 +1,3 @@
-// State Interface
 interface State {
     void insertQuarter();
     void ejectQuarter();
@@ -32,7 +31,6 @@ class NoQuarterState implements State {
     }
 }
 
-// Has Quarter State
 class HasQuarterState implements State {
     GumballMachine gumballMachine;
 
@@ -90,7 +88,6 @@ class SoldState implements State {
     }
 }
 
-// Sold Out State
 class SoldOutState implements State {
     GumballMachine gumballMachine;
 
@@ -115,7 +112,6 @@ class SoldOutState implements State {
     }
 }
 
-// Gumball Machine Context
 class GumballMachine {
     State soldOutState;
     State noQuarterState;
@@ -184,7 +180,6 @@ class GumballMachine {
     }
 }
 
-// Main Test Class
 public class GumballMachineTest {
     public static void main(String[] args) {
         GumballMachine gumballMachine = new GumballMachine(3);

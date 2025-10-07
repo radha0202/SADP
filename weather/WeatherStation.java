@@ -1,15 +1,14 @@
 import java.util.Observable;
 import java.util.Observer;
 
-// Subject class
 class WeatherData extends Observable {
     private float temperature;
     private float humidity;
     private float pressure;
 
     public void measurementsChanged() {
-        setChanged(); // Mark this Observable object as changed
-        notifyObservers(); // Notify all observers
+        setChanged();
+        notifyObservers();
     }
 
     public void setMeasurements(float temperature, float humidity, float pressure) {
@@ -32,7 +31,6 @@ class WeatherData extends Observable {
     }
 }
 
-// Observer class
 class CurrentConditionsDisplay implements Observer {
     private float temperature;
     private float humidity;
@@ -56,13 +54,11 @@ class CurrentConditionsDisplay implements Observer {
     }
 }
 
-// Main class
 public class WeatherStation {
     public static void main(String[] args) {
         WeatherData weatherData = new WeatherData();
         CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
 
-        // Simulate new weather measurements
         weatherData.setMeasurements(30.4f, 65f, 1013.1f);
         weatherData.setMeasurements(32.1f, 70f, 1012.5f);
         weatherData.setMeasurements(29.5f, 90f, 1011.9f);

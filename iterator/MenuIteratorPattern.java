@@ -1,9 +1,8 @@
 import java.util.*;
 
-// Menu Item Class
 class MenuItem {
     private String name;
-    private String type; // Veg or Non-Veg
+    private String type; 
     private double price;
 
     public MenuItem(String name, String type, double price) {
@@ -22,13 +21,11 @@ class MenuItem {
     }
 }
 
-// Iterator Interface
 interface MenuIterator {
     boolean hasNext();
     MenuItem next();
 }
 
-// Concrete Iterator
 class MenuItemIterator implements MenuIterator {
     private List<MenuItem> items;
     private int position = 0;
@@ -46,12 +43,10 @@ class MenuItemIterator implements MenuIterator {
     }
 }
 
-// Menu Interface
 interface Menu {
     MenuIterator createIterator();
 }
 
-// Concrete Menu
 class FoodMenu implements Menu {
     private List<MenuItem> items = new ArrayList<>();
 
@@ -68,12 +63,10 @@ class FoodMenu implements Menu {
     }
 }
 
-// Main Application
 public class MenuIteratorPattern {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Create Menus
         FoodMenu breakfast = new FoodMenu();
         breakfast.addItem("Idli Sambar", "Veg", 40);
         breakfast.addItem("Masala Dosa", "Veg", 50);
@@ -114,7 +107,7 @@ public class MenuIteratorPattern {
             System.out.println("5. Exit & Show Bill");
             System.out.print("Enter choice: ");
             int choice = sc.nextInt();
-            sc.nextLine(); // consume newline
+            sc.nextLine(); 
 
             FoodMenu selectedMenu = null;
             switch (choice) {
@@ -135,7 +128,7 @@ public class MenuIteratorPattern {
                     continue;
             }
 
-            // Display menu (no veg/non-veg filter now)
+            
             MenuIterator iterator = selectedMenu.createIterator();
             int index = 1;
             Map<Integer, MenuItem> menuMap = new HashMap<>();
@@ -147,7 +140,7 @@ public class MenuIteratorPattern {
                 index++;
             }
 
-            // Order selection
+            
             System.out.print("Enter the number of the dish you want to order: ");
             int dishNo = sc.nextInt();
             sc.nextLine();
@@ -160,7 +153,6 @@ public class MenuIteratorPattern {
                 System.out.println("Invalid dish number.");
             }
 
-            // Ask for another order
             System.out.print("Would you like to order another? (yes/no): ");
             String another = sc.nextLine().trim().toLowerCase();
             if (!another.equals("yes")) {

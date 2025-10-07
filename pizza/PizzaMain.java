@@ -1,4 +1,3 @@
-                                   // Pizza.java
 abstract class Pizza {
     String name;
     String dough;
@@ -25,7 +24,6 @@ abstract class Pizza {
     }
 }
 
-// NYStyleCheesePizza.java
 class NYStyleCheesePizza extends Pizza {
     public NYStyleCheesePizza() {
         name = "NY Style Cheese Pizza";
@@ -34,7 +32,6 @@ class NYStyleCheesePizza extends Pizza {
     }
 }
 
-// ChicagoStyleCheesePizza.java
 class ChicagoStyleCheesePizza extends Pizza {
     public ChicagoStyleCheesePizza() {
         name = "Chicago Style Cheese Pizza";
@@ -43,7 +40,6 @@ class ChicagoStyleCheesePizza extends Pizza {
     }
 }
 
-// PizzaStore.java
 abstract class PizzaStore {
     abstract Pizza createPizza(String type);
 
@@ -57,29 +53,27 @@ abstract class PizzaStore {
     }
 }
 
-// NYPizzaStore.java
 class NYPizzaStore extends PizzaStore {
     Pizza createPizza(String type) {
         if (type.equals("cheese")) {
             return new NYStyleCheesePizza();
         } else {
-            return null; // Other types can be added
+            return null; 
         }
     }
 }
 
-// ChicagoPizzaStore.java
 class ChicagoPizzaStore extends PizzaStore {
     Pizza createPizza(String type) {
         if (type.equals("cheese")) {
             return new ChicagoStyleCheesePizza();
         } else {
-            return null; // Other types can be added
+            return null; 
         }
     }
 }
 
-// Main.java
+
 public class PizzaMain {
     public static void main(String[] args) {
         PizzaStore nyStore = new NYPizzaStore();

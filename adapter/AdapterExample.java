@@ -25,7 +25,7 @@ public class AdapterExample {
         data.add("Adapter");
         data.add("Pattern");
 
-        // Get Enumeration and convert to Iterator using Adapter
+    
         Iterator<String> iterator = new EnumToIterator(data.elements());
 
         while (iterator.hasNext()) {
